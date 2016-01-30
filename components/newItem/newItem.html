@@ -1,0 +1,30 @@
+<ion-view view-title="New Item">
+
+  <ion-content style="display: flex;">    
+    <div class="total">
+        <div class=" padding stable-bg text-center" style> Press the + Button to add a new Bar Code</div> 
+
+        <div class="card list padding" ng-show="ver">
+         <span class="small">Code</span>
+         <p>{{obj.itemCode}}</p>
+         <span class="small">Type</span>
+         <p>{{obj.itemType}}</p>
+
+         <label class="item item-input item-floating-label" for="">
+         <input type="text" ng-model="obj.itemName" placeholder="Enter a Item Name"></label>
+         <label class="item item-input item-floating-label" for="">
+         <input type="number" ng-model="obj.itemAmount" placeholder="Item Amount"></label>
+         <label class="item item-input item-floating-label" for="">
+         <input type="text" ng-model="obj.itemProvider" placeholder="Item Provider"></label>
+         <br>
+
+         <button class="button button-block button-raised center" ng-click="newItem(obj)">Save</button>
+        	
+        </div>
+
+        <button id="fab" class="button button-calm-900 button-fab button-fab-bottom-right" ng-click="newCode()">
+			<i class="icon ion-plus-round"></i>
+		 </button>
+    </div>
+  </ion-content>
+</ion-view>

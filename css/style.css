@@ -1,0 +1,23 @@
+/* Empty. Add your own CSS if you like */
+
+.total{
+	align-items: stretch;
+}
+.bajo{
+	margin-top: 25px !important;
+}
+.small{
+	font-size: small;
+	color: #444;
+	font-weight: bold;
+}
+i.ion-android-create,.ion-android-upload{
+	font-size: 25px;
+	color : #009688;
+}
+input.amount{
+text-align: center;
+width: 60px;
+height:50px;
+
+}
