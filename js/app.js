@@ -10,6 +10,7 @@ angular.module('eStock',
   'eStock.menu',
   'eStock.newItem',
   'eStock.readItem',
+  'eStock.settings',
   'ionic-material',
   'ngCordova'])
 
@@ -54,6 +55,15 @@ angular.module('eStock',
         'menuContent': {
           templateUrl: 'components/readItem/readItem.html',
           controller: 'readItemCtrl'
+        }
+      }
+  })
+  .state('app.settings', {
+      url: '/settings',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/settings/settings.html',
+          controller: 'settingsCtrl'
         }
       }
   })

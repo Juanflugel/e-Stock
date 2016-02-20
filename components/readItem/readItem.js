@@ -38,7 +38,7 @@ angular.module('eStock.readItem',[])
 			 			alert('The Scaned code is not registered yet');
 			 		}
 			 		else{
-			 			$scope.readObj = data[0];
+			 			 $scope.readObj = data[0];
 						 $scope.whileObj = angular.copy($scope.readObj);
 						 $scope.show = true;
 			 		}

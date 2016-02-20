@@ -1,10 +1,13 @@
 <ion-view view-title="Read Item">
+<div class="bar bar-subheader bar-stable">
+  <h2 class="small text-center padding">Scan with " <i class="icon ion-android-search"></i> " to Search for Information</h2>
+</div>
 
 <ion-content style="display: flex;">    
-<div class="total">
-    <div class=" padding stable-bg text-center">
-      <strong>Scan with " <i class="icon ion-android-search"></i> " to Search for Information</strong> 
-    </div> 
+<div class="total"><br><br>
+    <!-- <div class=" padding stable-bg text-center">
+      <strong></strong> 
+    </div>  -->
 
     <div class="card padding" ng-show = "show">
         <div class="row">
@@ -64,7 +67,7 @@
 
 </div>
 
-<button ng-hide="edit" id="fab" class="button button-calm-900 button-fab button-fab-bottom-right" ng-click="searchCode()">
+<button ng-hide="edit" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="searchCode()">
     <span>
         <i class="icon ion-ios-search-strong"></i>
     </span>

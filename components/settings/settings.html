@@ -1,0 +1,53 @@
+<ion-view view-title="Settings">
+
+	<div class="bar bar-subheader bar-stable">
+ 		 <h2 class="small text-center padding">
+ 		 	Set up the user information 
+ 		 </h2>
+	</div>
+	
+	 <ion-content style="display: flex;">    
+    <div class="total"><br><br>
+
+        <div class="card list padding" >
+        <div class="row">
+            <div class="col col-67  text-center">
+                <span class="small">Company</span>
+                <p>{{obj.companyName}} Rhode Maschinenbau</p>
+            </div>
+            <div class="col text-center">
+                 <span class="small">PLZ</span>
+                 <p>{{obj.postCode}}23701</p>
+            </div>      
+        </div>
+        <div class="row">
+            <div class="col col-67  text-center">
+                <span class="small">User Name</span>
+                <p>Juan Garcia</p>
+            </div>
+            <div class="col text-center">
+                 <span class="small">ID</span>
+                 <p>RhMB 01</p>
+            </div>      
+        </div>
+        
+        <div class="padding" ng-show ="editInfo">
+             <label class="item item-input item-floating-label" for="">
+             <input type="text" ng-model="obj.itemName" placeholder="User Name"></label>
+             <label class="item item-input item-floating-label" for="">
+             <input type="number" ng-model="obj.itemAmount" placeholder="User Id"></label>
+             <label class="item item-input item-floating-label" for="">
+             <input type="text" ng-model="obj.itemProvider" placeholder="Info"></label>
+				<br>
+             <button class="button button-block button-raised center">Save</button>
+        </div>                
+        	
+        </div>
+
+        <button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="editInfo=!editInfo">
+			<i class="icon ion-edit"></i>
+		 </button>
+    </div>
+  </ion-content>
+
+</ion-view>
