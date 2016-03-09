@@ -1,7 +1,7 @@
 angular.module('eStock.readItem',[])
 
-.controller('readItemCtrl',['$scope','items','$cordovaBarcodeScanner',function ($scope,items,$cordovaBarcodeScanner){
-
+.controller('readItemCtrl',['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
+	
     $scope.whileObj = {}; // temporary objecto to keep the amount
     // green arrow to come back from edition and reestablish the amount
     $scope.back = function(){        
@@ -16,7 +16,7 @@ angular.module('eStock.readItem',[])
     $scope.updateAmount = function(obj){
 	   console.log(obj);
 	   const code = obj.itemCode;
-	   items.idUpdate.update({idCode:code},obj,function(data){
+	   shop.itemUpdate.update({idCode:code},obj,function(data){
 			 console.log('res:',data);
 			 $scope.whileObj = angular.copy($scope.readObj);
 			 $scope.edit = false;			 	
@@ -32,7 +32,7 @@ angular.module('eStock.readItem',[])
 	   $cordovaBarcodeScanner.scan().then(function(barcodeData) {
 			 const code = String(barcodeData.text);
 			 const type = String(barcodeData.format);
-			 items.id.query({idCode:code},function (data) {
+			 shop.itemId.query({idCode:code},function (data) {
 			 			 	
 			 		if (data.length == 0){
 			 			alert('The Scaned code is not registered yet');

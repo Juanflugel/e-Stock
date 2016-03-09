@@ -10,10 +10,11 @@ angular.module('eStock.services',['ngResource'])
   };
 })
 
-.factory('items',['$resource', 'Config', function ContenidoFactory($resource, Config){
+.factory('shop',['$resource', 'Config', function ContenidoFactory($resource, Config){
   return {
-    id: $resource('http://' + Config.ip + ':' + Config.port + '/items',{}),
-    idUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/items',{},{ update: {method: 'PUT'}})  
+    itemId: $resource('http://' + Config.ip + ':' + Config.port + '/items',{}),
+    itemUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/items',{},{ update: {method: 'PUT'}}),
+    company: $resource('http://' + Config.ip + ':' + Config.port + '/company',{})
   };
 }])
 

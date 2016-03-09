@@ -1,0 +1,60 @@
+<ion-view view-title="Place Item">
+<div class="bar bar-subheader bar-stable">
+  <h2 class="small text-center padding">Scan with " <i class="icon ion-arrow-swap"></i> " to place an Item</h2>
+</div>
+<ion-content style="display: flex;">
+<div class="total"><br><br>
+	<div class="card padding">
+		<div class="row">
+			<div class="col text-center">
+				<span class="small">Item Code</span>
+				<p>{{readObj.itemCode}}</p>
+			</div>
+			<div class="col text-center">
+			   <span class="small">Name</span>
+			   <p> {{readObj.itemName}}</p>
+		   </div>
+	   </div>
+	   <div class="row">
+			<div class="col text-center">
+				<span class="small">Assembly</span>
+				<p>{{readObj.itemAssemblyName}}</p>
+			</div>
+
+			 <div class="col text-center">
+			   <span class="small">Amount</span>
+			   <p> {{readObj.itemAmount}}</p>
+			</div>
+	   </div>
+
+	   <div class="row  center">
+				<div class="col text-center">
+				<span class="small">Categorie</span>
+				<p>{{readObj.itemCategorie}}</p>
+			</div>
+
+			 <div class="col text-center">
+			   <span class="small">Location</span>
+			   <p> {{readObj.itemLocation}}</p>
+			</div>	
+	   </div>
+
+	   <div class="col  center">
+		<div class="list">
+		  <label class="item item-input item-select">
+		    <div class="input-label small" >
+		      Move to : {{place.locationName}}
+		    </div>
+			    <select ng-model="place" ng-options="place.locationId for place in locations ">
+			      
+			    </select>
+		  </label>
+		</div>			
+	   </div>
+	</div>
+	<button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="moveItem()">
+			<i class="icon ion-arrow-swap"></i>
+		 </button>
+</div>
+</ion-content>
+</ion-view>

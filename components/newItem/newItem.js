@@ -1,6 +1,6 @@
 angular.module('eStock.newItem',[])
 
-.controller('newItemCtrl', ['$scope','$cordovaBarcodeScanner','items',function ($scope,$cordovaBarcodeScanner,items){
+.controller('newItemCtrl', ['$scope','$cordovaBarcodeScanner','shop',function ($scope,$cordovaBarcodeScanner,shop){
     
     $scope.obj = {};
     // $scope.ver = true;
@@ -28,7 +28,7 @@ angular.module('eStock.newItem',[])
 
     $scope.newItem = function(obj){
         // console.log(obj);
-        items.id.save(obj,function (data){
+        shop.itemId.save(obj,function (data){
             console.log(data);
             $scope.obj = {};
             $scope.ver = false;

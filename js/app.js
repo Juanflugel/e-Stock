@@ -10,6 +10,7 @@ angular.module('eStock',
   'eStock.menu',
   'eStock.newItem',
   'eStock.readItem',
+  'eStock.placeItem',
   'eStock.settings',
   'ionic-material',
   'ngCordova'])
@@ -40,6 +41,15 @@ angular.module('eStock',
     templateUrl: 'components/menu/menu.html',
     controller: 'AppCtrl'
   })
+  .state('app.placeItem', {
+      url: '/placeItem',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/placeItem/placeItem.html',
+          controller: 'placeItemCrtl'
+        }
+      }
+  })
   .state('app.newItem', {
       url: '/newItem',
       views: {
@@ -67,6 +77,7 @@ angular.module('eStock',
         }
       }
   })
+  
   
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/readItem');
