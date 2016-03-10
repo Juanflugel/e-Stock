@@ -17,7 +17,7 @@ angular.module('eStock.newItem',[])
                     } 
                     else {
                         $scope.obj.itemCode = code;
-                        $scope.obj.itemType = type;
+                        $scope.obj.itemCodeType = type;
                         $scope.ver = true;
                     }                
                 

@@ -3,17 +3,21 @@ angular.module('eStock.placeItem', ['eStock.services'])
 
 .controller('placeItemCrtl', ['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
 
-	console.log('tu perra madre');
-	$scope.firma = 'monda';
+
 	shop.company.query(function (data){
 		console.log('bien');
 		$scope.firma = data[0];
-		$scope.locations = $scope.firma.companyLocations;
 	},function (err){
 
 	});
 
-	$scope.moveItem = function(){
+	var firmaId = 'RMB01';
+
+	shop.project.query({companyId:firmaId},function (data){
+		$scope.locations = data;
+	});
+
+	$scope.takeItem = function(){
 
 		$cordovaBarcodeScanner.scan().then(function(barcodeData) {
 			 const code = String(barcodeData.text);
@@ -26,7 +30,7 @@ angular.module('eStock.placeItem', ['eStock.services'])
 			 		else{
 			 			 $scope.readObj = data[0];
 						 $scope.whileObj = angular.copy($scope.readObj);
-						 $scope.show = true;
+						 $scope.transfer = true;
 			 		}
 					 
 				 },function(queryerr){
@@ -38,5 +42,15 @@ angular.module('eStock.placeItem', ['eStock.services'])
 	   });
         
 	}
+
+	$scope.itemToProject = function (projectId){
+		console.log(projectId);
+		shop.projectUpdate.update({projectNumber:projectId},$scope.readObj,function (data){
+			alert('item insert in porject: '+ projectId)
+			$scope.transfer = false;
+		});
+
+	}
+
 
 }])

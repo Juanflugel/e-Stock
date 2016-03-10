@@ -4,7 +4,7 @@
 </div>
 <ion-content style="display: flex;">
 <div class="total"><br><br>
-	<div class="card padding">
+	<div class="card padding" ng-show="transfer">
 		<div class="row">
 			<div class="col text-center">
 				<span class="small">Item Code</span>
@@ -43,16 +43,22 @@
 		<div class="list">
 		  <label class="item item-input item-select">
 		    <div class="input-label small" >
-		      Move to : {{place.locationName}}
+		      Move to Project :
 		    </div>
-			    <select ng-model="place" ng-options="place.locationId for place in locations ">
+			    <select ng-model="local" ng-options="number.projectNumber for number in locations ">
 			      
 			    </select>
 		  </label>
 		</div>			
+	   </div> <br>
+
+	   <div ng-show="local"class="col text-center" ng-click ="itemToProject(local.projectNumber)">
+	   	<i class="ion-checkmark-circled"></i>
 	   </div>
+
 	</div>
-	<button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="moveItem()">
+
+	<button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeItem()">
 			<i class="icon ion-arrow-swap"></i>
 		 </button>
 </div>

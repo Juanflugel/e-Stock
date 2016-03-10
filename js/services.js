@@ -14,7 +14,9 @@ angular.module('eStock.services',['ngResource'])
   return {
     itemId: $resource('http://' + Config.ip + ':' + Config.port + '/items',{}),
     itemUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/items',{},{ update: {method: 'PUT'}}),
-    company: $resource('http://' + Config.ip + ':' + Config.port + '/company',{})
+    company: $resource('http://' + Config.ip + ':' + Config.port + '/company',{}),
+    project:$resource('http://' + Config.ip + ':' + Config.port + '/projects',{}),
+    projectUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/itemToProject',{},{ update: {method: 'PUT'}})
   };
 }])
 
