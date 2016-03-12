@@ -8,7 +8,7 @@ angular.module('eStock.newItem',[])
     $scope.newCode = function(){    
 
         $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-                const code = String(barcodeData.text);
+                const code = String(barcodeData.text).toUpperCase();
                 const type = String(barcodeData.format);
 
                     if (code ==''|| null|| undefined) {

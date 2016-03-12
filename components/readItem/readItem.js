@@ -1,7 +1,7 @@
 angular.module('eStock.readItem',[])
 
 .controller('readItemCtrl',['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
-	
+
     $scope.whileObj = {}; // temporary objecto to keep the amount
     // green arrow to come back from edition and reestablish the amount
     $scope.back = function(){        
@@ -10,7 +10,7 @@ angular.module('eStock.readItem',[])
     }
 
     $scope.editAmount = function() {
-	   $scope.edit = true;
+	   $scope.edit = false;
     }
 
     $scope.updateAmount = function(obj){
@@ -30,8 +30,9 @@ angular.module('eStock.readItem',[])
     $scope.searchCode = function(){    
 
 	   $cordovaBarcodeScanner.scan().then(function(barcodeData) {
-			 const code = String(barcodeData.text);
+			 const code = String(barcodeData.text).toUpperCase();
 			 const type = String(barcodeData.format);
+	
 			 shop.itemId.query({idCode:code},function (data) {
 			 			 	
 			 		if (data.length == 0){

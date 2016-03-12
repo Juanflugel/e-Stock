@@ -22,22 +22,30 @@
 			</div>
 
 			 <div class="col text-center">
-			   <span class="small">Amount</span>
-			   <p> {{readObj.itemAmount}}</p>
-			</div>
-	   </div>
-
-	   <div class="row  center">
-				<div class="col text-center">
-				<span class="small">Categorie</span>
-				<p>{{readObj.itemCategorie}}</p>
-			</div>
-
-			 <div class="col text-center">
 			   <span class="small">Location</span>
 			   <p> {{readObj.itemLocation}}</p>
-			</div>	
+			</div>
 	   </div>
+
+	  <div class="row">
+    <div class="col text-center">
+        <span class="small ">Amount</span>
+        <p ng-click="defineAmount()" ng-hide="editAmount" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
+                          
+		<div class="row" ng-show ="editAmount">
+			<div class="col"><i class="icon ion-arrow-return-left" ng-click="forgetToPlace()"></i></div>
+            <div class="col">
+                <input  name="move" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
+            </div>
+            <div class="col"></div>
+		</div>
+            
+               
+		<!-- <div class="col text-center"><i ng-click="defineAmount()" ng-hide ="editAmount" class="icon ion-android-create" ></i></div>  -->
+
+
+    </div>   
+</div>
 
 	   <div class="col  center">
 		<div class="list">
