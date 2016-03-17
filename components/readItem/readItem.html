@@ -15,21 +15,23 @@
                 <span class="small">Item Code</span>
                 <p>{{readObj.itemCode}}</p>
             </div>
-            <div class="col text-center">
-               <span class="small">Name</span>
-               <p style="font-size: small;"> {{readObj.itemName}}</p>
-           </div>
-       </div>
-       <div class="row">
-        <div class="col text-center">
-              <span class="small">Provider</span>
-              <p>{{readObj.itemProvider}}</p>
-        </div>
-        <div class="col text-center"> 
+            <div class="col text-center"> 
              <span class="small">Location</span>
              <p>{{readObj.itemLocation}}</p>
+            </div>
+           
        </div>
-   </div>
+       <div class="row">
+          <div class="col text-center">
+                <span class="small">Last Time</span>
+                <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
+          </div>
+
+         <div class="col text-center">
+               <span class="small">Name</span>
+               <p class="itemName"> {{readObj.itemName}}</p>
+         </div>      
+       </div>
 
    <div class="row">
     <div class="col text-center">
@@ -53,12 +55,8 @@
 
 <div class="row">
     <div class="col">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col text-right"><i class="icon ion-android-create" ng-click="editAmount()"></i></div>
+            <div class="col text-center"><i ng-hide="edit" class="icon ion-android-create" ng-click="editAmount()"></i>
+            </div>
         </div>
     </div>
 

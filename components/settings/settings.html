@@ -13,33 +13,38 @@
         <div class="row">
             <div class="col col-67  text-center">
                 <span class="small">Company</span>
-                <p>{{obj.companyName}} Rhode Maschinenbau</p>
+                <p>{{company.companyName}} Rhode Maschinenbau</p>
             </div>
             <div class="col text-center">
                  <span class="small">PLZ</span>
-                 <p>{{obj.postCode}}23701</p>
+                 <p>{{company.companyZipCode}}</p>
             </div>      
         </div>
         <div class="row">
             <div class="col col-67  text-center">
                 <span class="small">User Name</span>
-                <p>Juan Garcia</p>
+                <p>{{currentUser.userName}}</p>
             </div>
             <div class="col text-center">
                  <span class="small">ID</span>
-                 <p>RhMB 01</p>
-            </div>      
+                 <p>{{currentUser.userId}}</p>
+            </div>   
+             
         </div>
         
-        <div class="padding" ng-show ="editInfo">
-             <label class="item item-input item-floating-label" for="">
-             <input type="text" ng-model="obj.itemName" placeholder="User Name"></label>
-             <label class="item item-input item-floating-label" for="">
-             <input type="number" ng-model="obj.itemAmount" placeholder="User Id"></label>
-             <label class="item item-input item-floating-label" for="">
-             <input type="text" ng-model="obj.itemProvider" placeholder="Info"></label>
-				<br>
-             <button class="button button-block button-raised center">Save</button>
+        <div class="padding" ng-show="editInfo">
+             
+             <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label small" >
+                  Change User to:
+                </div>
+                    <select ng-model="currentUser" ng-options="person.userName for person in company.companyUsers ">
+                      
+                    </select>
+              </label>
+            </div> 
+             <button class="button button-block button-raised center" ng-click="saveUser(currentUser)">Save</button>
         </div>                
         	
         </div>

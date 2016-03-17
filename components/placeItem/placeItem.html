@@ -4,71 +4,77 @@
 </div>
 <ion-content style="display: flex;">
 <div class="total"><br><br>
-	<div class="card padding" ng-show="transfer">
-		<div class="row">
-			<div class="col text-center">
-				<span class="small">Item Code</span>
-				<p>{{readObj.itemCode}}</p>
-			</div>
-			<div class="col text-center">
-			   <span class="small">Name</span>
-			   <p> {{readObj.itemName}}</p>
-		   </div>
-	   </div>
-	   <div class="row">
-			<div class="col text-center">
-				<span class="small">Assembly</span>
-				<p>{{readObj.itemAssemblyName}}</p>
-			</div>
+    <div class="card padding" ng-show="transfer">
 
-			 <div class="col text-center">
-			   <span class="small">Location</span>
-			   <p> {{readObj.itemLocation}}</p>
-			</div>
-	   </div>
-
-	  <div class="row">
-    <div class="col text-center">
-        <span class="small ">Amount</span>
-        <p ng-click="defineAmount()" ng-hide="editAmount" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
-                          
-		<div class="row" ng-show ="editAmount">
-			<div class="col"><i class="icon ion-arrow-return-left" ng-click="forgetToPlace()"></i></div>
-            <div class="col">
-                <input  name="move" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
+        <div class="row">
+            <div class="col text-center">
+                <span class="small">Item Code</span>
+                <p>{{readObj.itemCode}}</p>
             </div>
-            <div class="col"></div>
-		</div>
+
+            <div class="col text-center">
+               <span class="small">Location</span>
+               <p> {{readObj.itemLocation}}</p>
+            </div>
             
-               
-		<!-- <div class="col text-center"><i ng-click="defineAmount()" ng-hide ="editAmount" class="icon ion-android-create" ></i></div>  -->
+       </div>
+
+       <div class="row">
+            <div class="col text-center">
+                <span class="small">Last Date</span>
+                <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
+            </div>
+
+            <div class="col text-center">
+               <span class="small">Name</span>
+               <p class="itemName"> {{readObj.itemName}}</p>
+           </div>
+       </div>
+
+      <div class="row">
+        <div class="col text-center">
+            <span class="small ">Amount To Use</span>
+            <p ng-click="defineAmount()" ng-hide="editAmount" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
+                          
+            <div class="row" ng-show ="editAmount">
+                <div class="col"><i class="icon ion-arrow-return-left" ng-click="forgetToPlace()"></i></div>
+                <div class="col">
+                    <input  name="move" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>   
+      </div>
+
+       <div class="col  center">
+            <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label small" >
+                  Move to Project :
+                </div>
+                    <select ng-model="project" ng-options="number.projectNumber for number in projects ">
+                      
+                    </select>
+              </label>
+            </div>          
+      </div>
+      <div class="col text-center" ng-show="project">
+        <h3>{{project.projectName}}</h3>
+      </div>
 
 
-    </div>   
-</div>
 
-	   <div class="col  center">
-		<div class="list">
-		  <label class="item item-input item-select">
-		    <div class="input-label small" >
-		      Move to Project :
-		    </div>
-			    <select ng-model="local" ng-options="number.projectNumber for number in locations ">
-			      
-			    </select>
-		  </label>
-		</div>			
-	   </div> <br>
+           <br>
 
-	   <div ng-show="local"class="col text-center" ng-click ="itemToProject(local.projectNumber)">
-	   	<i class="ion-checkmark-circled"></i>
-	   </div>
+       <div ng-show="project" class="col text-center" ng-click ="itemToProject(project.projectNumber)">
+        <i class="ion-checkmark-circled"></i>
+       </div>
 
-	</div>
+    </div>
 
-	<button ng-hide="ver" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeItem()">
-			<i class="icon ion-arrow-swap"></i>
-		 </button>
+    <button ng-hide="transfer" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeItem()">
+            <i class="icon ion-arrow-swap"></i>
+         </button>
 </div>
 </ion-content>
 </ion-view>

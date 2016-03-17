@@ -26,7 +26,7 @@ angular.module('eStock.placeItem', ['eStock.services'])
 
 	// query from DB all the projects that belong to the company
 	shop.project.query({companyId:firmaId},function (data){
-		$scope.locations = data;
+		$scope.projects = data;
 	});
 	// scan an Item and bring all the information from DB
 	$scope.takeItem = function(){
