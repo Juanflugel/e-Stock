@@ -25,7 +25,7 @@ angular.module('eStock.placeItem', ['eStock.services'])
 	var firmaId = 'RMB01';
 
 	// query from DB all the projects that belong to the company
-	shop.project.query({companyId:firmaId},function (data){
+	shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},function (data){
 		$scope.projects = data;
 	});
 	// scan an Item and bring all the information from DB
@@ -34,7 +34,10 @@ angular.module('eStock.placeItem', ['eStock.services'])
 		$cordovaBarcodeScanner.scan().then(function(barcodeData) {
 			 const code = String(barcodeData.text).toUpperCase();;
 			 const type = String(barcodeData.format);
-			 shop.itemId.query({idCode:code},function (data) {
+			 var query = {};
+			 query.itemCode = code;
+			 query.companyId = firmaId;
+			 shop.itemId.query(query,function (data) {
 							
 					if (data.length == 0){
 						alert('The Scaned code is not registered yet');
@@ -55,18 +58,19 @@ angular.module('eStock.placeItem', ['eStock.services'])
 		
 	}
 	// set the item and amount to the item array inisde a project
-	$scope.itemToProject = function (projectId){
+	$scope.itemToProject = function (proNumber){
+		var query = {};
+		query.projectNumber = proNumber;
 		var obj = $scope.readObj;
-		console.log(projectId);
 		// query for insert intem in project
-		shop.projectUpdate.update({projectNumber:projectId},$scope.readObj,function (data){			
+		shop.projectUpdate.update(query,$scope.readObj,function (data){			
 			$scope.transfer = false;
 			const takenAmount = obj.itemAmount;
 			const newAmount = $scope.whileObj.itemAmount-takenAmount;
 			// query for update new amount
 			obj.itemAmount = newAmount;
 
-			shop.itemUpdate.update({idCode:obj.itemCode},obj,function (data){
+			shop.itemUpdate.update({itemCode:obj.itemCode},obj,function (data){
 			 	alert('item insert in porject: '+ projectId);
 			
 			}, function(error){

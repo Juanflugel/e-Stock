@@ -11,6 +11,7 @@ angular.module('eStock',
   'eStock.newItem',
   'eStock.readItem',
   'eStock.placeItem',
+  'eStock.placeAssembly',
   'eStock.settings',
   'ionic-material',
   'ngCordova'])
@@ -47,6 +48,15 @@ angular.module('eStock',
         'menuContent': {
           templateUrl: 'components/placeItem/placeItem.html',
           controller: 'placeItemCrtl'
+        }
+      }
+  })
+  .state('app.placeAssembly', {
+      url: '/placeAssembly',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/placeAssembly/placeAssembly.html',
+          controller: 'placeAssemblyCtrl'
         }
       }
   })

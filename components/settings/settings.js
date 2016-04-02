@@ -14,7 +14,9 @@ angular.module('eStock.settings',['eStock.services'])
 	$scope.currentUser = $localstorage.getObject('currentUser') || {};
 
 	$scope.saveUser = function(obj){
+		console.log($scope.editInfo);
 		$localstorage.setObject('currentUser',obj);
+		alert('User changed to : '+ obj.userName);
 	}
 	
 

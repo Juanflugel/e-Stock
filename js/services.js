@@ -14,9 +14,39 @@ angular.module('eStock.services',['ngResource'])
   return {
     itemId: $resource('http://' + Config.ip + ':' + Config.port + '/items',{}),
     itemUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/items',{},{ update: {method: 'PUT'}}),
+    itemUpdateMulti:$resource('http://' + Config.ip + ':' + Config.port + '/itemsMultipleAmount',{},{ update: {method: 'PUT'}}),
     company: $resource('http://' + Config.ip + ':' + Config.port + '/company',{}),
     project:$resource('http://' + Config.ip + ':' + Config.port + '/projects',{}),
-    projectUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/itemToProject',{},{ update: {method: 'PUT'}})
+    projectUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/itemToProject',{},{ update: {method: 'PUT'}}),
+    resumeCodeAndAmount:function  (collection) {
+        const sample = [];
+        _.each(collection,function (obj) {
+          const a = [obj.itemCode,obj.itemAmount];
+          sample.push(a);
+        });
+        return sample;
+    },
+    subtract2arrays: function (a,b) { // a = array whit values from Stock ['itemCode',3]; b= array from values from the project ['itemCode',5]
+      var diff = [];
+      const lb = b.length;
+      _.each(a,function (aObj) {
+        for( i=0 ; i<lb ;i++){
+          var bObj = b[i];
+          if (aObj[0] == bObj[0]){
+            diff.push([aObj[0],aObj[1]-bObj[1]]);
+          }
+        }
+      });
+      return diff;
+    },
+    justItemCode: function(collection){
+      var queryArray = [];
+      _.each(collection,function (array){
+          queryArray.push(array[0]);
+      });
+      return queryArray;
+    }
+
   };
 }])
 

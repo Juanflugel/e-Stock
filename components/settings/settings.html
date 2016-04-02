@@ -1,4 +1,4 @@
-<ion-view view-title="Settings">
+<ion-view view-title="Settings" cache-view="false">
 
 	<div class="bar bar-subheader bar-stable">
  		 <h2 class="small text-center padding">
@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col col-67  text-center">
                 <span class="small">Company</span>
-                <p>{{company.companyName}} Rhode Maschinenbau</p>
+                <p>{{company.companyName}}</p>
             </div>
             <div class="col text-center">
                  <span class="small">PLZ</span>
@@ -32,7 +32,7 @@
              
         </div>
         
-        <div class="padding" ng-show="editInfo">
+        <div class="padding text-center" ng-show="editInfo" >
              
              <div class="list">
               <label class="item item-input item-select">
@@ -43,8 +43,9 @@
                       
                     </select>
               </label>
-            </div> 
-             <button class="button button-block button-raised center" ng-click="saveUser(currentUser)">Save</button>
+            </div>
+
+             <i ng-click="saveUser(currentUser);editInfo=!editInfo" class="ion-checkmark-circled"> </i>
         </div>                
         	
         </div>

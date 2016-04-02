@@ -1,28 +1,28 @@
-<ion-view view-title="Place Item" cache-view="false">
+<ion-view view-title="Place Assembly" cache-view="false">
 <div class="bar bar-subheader bar-stable">
-  <h2 class="small text-center padding">Scan with " <i class="icon ion-arrow-swap"></i> " to place an Item</h2>
+  <h2 class="small text-center padding">Scan with " <i class="icon ion-arrow-swap"></i> " to place an Assembly</h2>
 </div>
 <ion-content style="display: flex;">
 <div class="total"><br><br>
-    <div class="card padding" ng-show="transfer">
+    <div class="card padding" ng-show="assembly">
 
         <div class="row">
             <div class="col text-center">
-                <span class="small">Item Code</span>
-                <p>{{readObj.itemCode}}</p>
+                <span class="small">Assembly Code</span>
+                <p>{{currentObj.projectNumber}}</p>
             </div>
 
             <div class="col text-center">
-               <span class="small">Location</span>
-               <p> {{readObj.itemLocation}}</p>
+               <span class="small">Name</span>
+               <p> {{currentObj.projectName}}</p>
             </div>
             
        </div>
 
        <div class="row">
             <div class="col text-center">
-                <span class="small">Last Date</span>
-                <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
+                <span class="small">Amount of Parts</span>
+                <p>{{currentObj.projectItems.length}}</p>
             </div>
 
             <div class="col text-center">
@@ -31,7 +31,7 @@
            </div>
        </div>
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="col text-center">
             <span class="small ">Amount To Use</span>
             <p ng-click="defineAmount()" ng-hide="editAmount" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
@@ -44,7 +44,7 @@
                 <div class="col"></div>
             </div>
         </div>   
-      </div>
+      </div> -->
 
        <div class="col  center">
             <div class="list">
@@ -52,27 +52,28 @@
                 <div class="input-label small" >
                   Move to Project :
                 </div>
-                    <select ng-model="project" ng-options="number.projectNumber for number in projects ">
+                    <select ng-model="projectObj" ng-options="p.projectName for p in activos ">
                       
                     </select>
               </label>
             </div>          
       </div>
-      <div class="col text-center" ng-show="project">
-        <h3>{{project.projectName}}</h3>
+      <div class="col text-center" ng-show="projectObj">
+        <h3>{{projectObj.projectName}}</h3>
+         <h3>{{projectObj.projectNumber}}</h3>
       </div>
 
 
 
            <br>
 
-       <div ng-show="project" class="col text-center" ng-click ="itemToProject(project.projectNumber)">
+       <div ng-show="projectObj" class="col text-center" ng-click ="assemblyToProject(projectObj._id)">
         <i class="ion-checkmark-circled"></i>
        </div>
 
     </div>
 
-    <button ng-hide="transfer" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeItem()">
+    <button ng-hide="assembly" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeAssembly()">
             <i class="icon ion-arrow-swap"></i>
          </button>
 </div>
