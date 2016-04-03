@@ -52,7 +52,7 @@
                 <div class="input-label small" >
                   Move to Project :
                 </div>
-                    <select ng-model="projectObj" ng-options="p.projectName for p in activos ">
+                    <select ng-change ="restarArrays()" ng-model="projectObj" ng-options="p.projectName for p in activos ">
                       
                     </select>
               </label>
