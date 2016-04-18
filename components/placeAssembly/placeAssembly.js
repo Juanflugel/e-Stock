@@ -52,7 +52,6 @@ $scope.takeAssembly = function(){
 						 $scope.itemsToMove = $scope.currentObj.projectItems;
 						 $scope.itemsToSubtract = shop.resumeCodeAndAmount($scope.itemsToMove);
 						 multyQuery = shop.justItemCode($scope.itemsToSubtract);
-						 
 						 $scope.assembly = true;
 						 callJustTheOnes();
 					}
@@ -72,7 +71,7 @@ $scope.restarArrays = function () {
 }
 	
 $scope.assemblyToProject = function(idProject){
-		 var start = new Date();
+	var start = new Date();
 	var query = {};
 	query._id = idProject;
 	// query for insert intem in project

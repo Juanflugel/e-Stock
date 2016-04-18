@@ -5,12 +5,14 @@ angular.module('eStock.settings',['eStock.services'])
 	const companyId = "RMB01";
 
 	shop.company.query({companyId:companyId},function (data){
+		$scope.company = data[0];
 		$localstorage.setObject('companyinfo',data[0]);
 		},function (error){
+			$scope.company = $localstorage.getObject('companyinfo');
+		}
+	);
 
-	});
-
-	$scope.company = $localstorage.getObject('companyinfo');
+	
 	$scope.currentUser = $localstorage.getObject('currentUser') || {};
 
 	$scope.saveUser = function(obj){
