@@ -1,0 +1,25 @@
+<ion-view view-title="Assembly Items">
+   <ion-content>
+        <div class="card">
+        <!-- header with the mall -->
+            <div class="item item-avatar">
+                <!-- <img src="{{currentAssembly.mallImage}}"> -->
+                <h2>{{currentAssembly.projectName}}</h2>
+                <p>{{currentAssembly.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p>
+            </div>
+
+            <ion-list class="item item-body">
+                <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in itemList" type="item-text-wrap" href="#/tab/list/{{fId}}/{{item.itemId}}" ng-click="passitem(item)">
+                  <!-- image of the item -->
+<!--                   <img ng-src="{{item.imgUrl}}"> -->
+
+                  <h2 class="capital">{{item.itemName}} <span class="menge">{{item.itemAmount}}</span></h2>
+
+                  <p class="time">Code :{{item.itemCode | date:"MM/dd/yyyy"}}</p>
+                  <i class="icon ion-chevron-right icon-accessory"></i>
+
+                </ion-item>
+             </ion-list>
+        </div> 
+    </ion-content>  
+</ion-view>

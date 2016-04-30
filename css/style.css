@@ -36,3 +36,50 @@ margin-left: 5px;
 .itemName{
 	font-size: x-small;
 }
+
+.card, .list-inset {
+    border-top: solid 3.5px #00796B;
+    overflow: hidden;
+    margin: 10px 10px;
+    border-radius: 1px;
+    background-color: #fff;
+    box-shadow: 0 2px 1px #B6B6B6;
+}
+.bills {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+.has-header {
+    top: 55px;
+}
+.item h2 {
+    margin: 6px 0 1px 0;
+}
+.first{
+    color:#212121;
+}
+.second{
+    color: #727272;
+}
+.time {
+   font-size:small !important;
+}
+.menge{
+    position: absolute;
+    right: 50px;
+    font-size:x-small;
+}
+.list{
+margin: 10px;
+}
+.item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content{
+    min-height: 40px !important;
+}
+.item-body p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.item-body {
+padding: 5px;
+}

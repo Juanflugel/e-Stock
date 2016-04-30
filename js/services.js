@@ -50,9 +50,9 @@ angular.module('eStock.services',['ngResource'])
   };
 }])
 
-.factory('handleBills', function ($rootScope) {
+.factory('handleProjects', function ($rootScope) {
 
-  var currentBill={};
+  var currentAssembly={};
   var detalle ={};
   var toBuy = {};
 
@@ -63,16 +63,16 @@ angular.module('eStock.services',['ngResource'])
     updateBuyList:function(){
       $rootScope.$broadcast('newProductToBuy');
     },
-    passBill: function(obj){
-      currentBill = obj;
-      console.log(currentBill);
+    passAssembly: function(obj){
+      currentAssembly = obj;
+      console.log(currentAssembly);
     },
     remove: function(bill) {
       bills.splice(bills.indexOf(bill), 1);
     },
-    getCurrentBill: function() {
+    getCurrentAssembly: function() {
       console.log('me llamaron');
-      return currentBill;
+      return currentAssembly;
 
     },
     passProduct: function(obj){

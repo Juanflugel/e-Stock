@@ -12,6 +12,7 @@ angular.module('eStock',
   'eStock.readItem',
   'eStock.placeItem',
   'eStock.placeAssembly',
+  'eStock.someItems',
   'eStock.settings',
   'ionic-material',
   'ngCordova'])
@@ -87,7 +88,24 @@ angular.module('eStock',
         }
       }
   })
-  
+  .state('app.someItems', {
+      url: '/someItems',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/someItems/someItems.html',
+          controller: 'allAssembliesCtrl'
+        }
+      }
+  })
+  .state('app.itemsInAssembly', {
+      url: '/someItems/:itemsInAssembly',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/someItems/assemblyItems.html',
+          controller: 'itemsInAssemblyCtrl'
+        }
+      }
+  })
   
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/readItem');
