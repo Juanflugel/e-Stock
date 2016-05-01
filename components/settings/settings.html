@@ -1,32 +1,32 @@
 <ion-view view-title="Settings" cache-view="false">
 
 	<div class="bar bar-subheader bar-stable">
- 		 <h2 class="small text-center padding">
+ 		 <h2 class="tagStyle text-center padding">
  		 	Set up the user information 
  		 </h2>
 	</div>
 	
-	 <ion-content style="display: flex;">    
-    <div class="total"><br><br>
+	 <ion-content>    
+    <div><br><br>
 
         <div class="card list padding" >
         <div class="row">
             <div class="col col-67  text-center">
-                <span class="small">Company</span>
+                <span class="tagStyle">Company</span>
                 <p>{{company.companyName}}</p>
             </div>
             <div class="col text-center">
-                 <span class="small">PLZ</span>
+                 <span class="tagStyle">PLZ</span>
                  <p>{{company.companyZipCode}}</p>
             </div>      
         </div>
         <div class="row">
             <div class="col col-67  text-center">
-                <span class="small">User Name</span>
+                <span class="tagStyle">User Name</span>
                 <p>{{currentUser.userName}}</p>
             </div>
             <div class="col text-center">
-                 <span class="small">ID</span>
+                 <span class="tagStyle">ID</span>
                  <p>{{currentUser.userId}}</p>
             </div>   
              
@@ -36,7 +36,7 @@
              
              <div class="list">
               <label class="item item-input item-select">
-                <div class="input-label small" >
+                <div class="input-label tagStyle" >
                   Change User to:
                 </div>
                     <select ng-model="currentUser" ng-options="person.userName for person in company.companyUsers ">

@@ -1,15 +1,16 @@
 <ion-view view-title="Some Items" cache-view="false">
 <div class="bar bar-subheader bar-stable">
-  <h2 class="small text-center padding">
+  <h2 class="tagStyle text-center padding">
     Place just some Items
   </h2>
 </div>
 
 <ion-content>
-<br> <br> <br>
-    <ion-item class="item-remove-animate item item-thumbnail-left item-icon-right card bills" ng-repeat="assembly in assemblyList" type="item-text-wrap" href="#/app/someItems/{{assembly._id}}" ng-click="passAssembly(assembly)">
+<br> <br>
+    <ion-item class="item-icon-right card bills" ng-repeat="assembly in assemblyList" type="item-text-wrap" href="#/app/someItems/{{assembly._id}}" ng-click="passAssembly(assembly)">
         <h2 class="first">{{assembly.projectName}}</h2>
-        <p class="second">{{assembly.projectItems.length}}</p>
+        <p class="second">{{assembly.projectNumber}}</p>
+        <p class="second">{{assembly.projectItems.length}} BAUTEILE</p>
         <!-- <p class="second time">{{bill.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
     </ion-item>

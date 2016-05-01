@@ -3,7 +3,7 @@ angular.module('eStock.placeAssembly',['eStock.services'])
 .controller('placeAssemblyCtrl',['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
 // confi inicial de la vista
 var firmaId = 'RMB01';
-$scope.currentObj = {};
+$scope.currentObj = {}; // current assembly
 $scope.assembly = false; // ng-show
 // confi inicial de la vista
 

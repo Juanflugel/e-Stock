@@ -1,41 +1,39 @@
 <ion-view view-title="Read Item" cache-view="false">
 <div class="bar bar-subheader bar-stable">
-  <h2 class="small text-center padding">Scan with " <i class="icon ion-android-search"></i> " to Search for Information</h2>
+  <h2 class="tagStyle text-center padding">Scan with " <i class="icon ion-android-search"></i> " to Search for Information</h2>
 </div>
 
-<ion-content style="display: flex;">    
-<div class="total"><br><br>
-    <!-- <div class=" padding stable-bg text-center">
-      <strong></strong> 
-    </div>  -->
+<ion-content>    
+<div><br><br>
+<p style="padding-left:10px;"><i class="icon ion-person"></i> -{{actualUser.realName}}</p>
 
     <div class="card padding" ng-show = "show">
         <div class="row">
             <div class="col text-center">
-                <span class="small">Item Code</span>
+                <span class="tagStyle">Item Code</span>
                 <p>{{readObj.itemCode}}</p>
             </div>
             <div class="col text-center"> 
-             <span class="small">Location</span>
+             <span class="tagStyle">Location</span>
              <p>{{readObj.itemLocation}}</p>
             </div>
            
        </div>
        <div class="row">
           <div class="col text-center">
-                <span class="small">Last Time</span>
+                <span class="tagStyle">Last Time</span>
                 <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
           </div>
 
          <div class="col text-center">
-               <span class="small">Name</span>
+               <span class="tagStyle">Name</span>
                <p class="itemName"> {{readObj.itemName}}</p>
          </div>      
        </div>
 
    <div class="row">
     <div class="col text-center">
-        <span class="small ">Amount</span>
+        <span class="tagStyle ">Amount</span>
         <p ng-hide="edit" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
 
         <form class="row" ng-show ="edit" name="juan">                          
