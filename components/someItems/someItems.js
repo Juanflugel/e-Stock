@@ -14,8 +14,14 @@ angular.module('eStock.someItems',[])
 
 }])
 
-.controller('itemsInAssemblyCtrl',['$scope','shop','handleProjects',function ($scope,shop,handleProjects){
+.controller('itemsInAssemblyCtrl',['$scope','shop','handleProjects','$state',function ($scope,shop,handleProjects,$state){
 	
+	var firmaId = "RMB01";
+	// query from DB all the projects that belong to the company
+shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},function (data){
+		$scope.activos = data; // referente solo a los projecto que estan en ejecucion
+});
+
 	var itemsNewAmounts = []; // [itemCode,itemAmount]
 	var itemsAndAmountInStock = []; // [itemCode,itemAmount]
 	var itemsToTakeFromStock = []; // [itemCode,itemAmount]
@@ -49,9 +55,29 @@ angular.module('eStock.someItems',[])
 			 itemsAndAmountInStock = shop.resumeCodeAndAmount(data); // resume in a multyple array from code and amount
 			 console.log(itemsAndAmountInStock);
 			 itemsNewAmounts = shop.subtract2arrays(itemsAndAmountInStock,itemsToTakeFromStock);
-			 alert('definitive:'+itemsNewAmounts.length);
+			 alert(itemsNewAmounts.length + ' Items Selected');
+			 $scope.arrayReady = true;
 			},function (error){})
 	};
+
+	$scope.itemsToProject = function(idProject){
+	var start = new Date();
+	var query = {};
+	query._id = idProject;
+	// query for insert intem in project
+	shop.projectUpdate.update(query,$scope.itemsToInsert,function (data){
+
+				shop.itemUpdateMulti.update({},itemsNewAmounts,function (data) {	
+					 var t = new Date() - start;
+					alert('Update in Stock successful : '+ t);
+					$state.go('app.someItems');			
+					},function (error) {
+						alert('fail update in Stock');
+					}
+				);
+
+			},function (error){});
+	}
 
 
 }]);

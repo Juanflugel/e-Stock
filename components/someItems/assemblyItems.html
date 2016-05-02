@@ -1,27 +1,43 @@
 <ion-view view-title="Assembly Items">
    <ion-content>
-        <div class="card">
-        <!-- header with the mall -->
-            <div class="item">
-                <div class="row">
-                   <h2>{{currentAssembly.projectName}}</h2>
-                <button  class="button button-balanced menge" ng-click="chooseItemsToInsertInProject()"> insert</button>
-                </div>           
-  
-            </div>
+   <div class="card">
+    <!-- header with the mall -->
+    <div class="item">
+      <div class="row">
+         <h2>{{currentAssembly.projectName}}</h2>
 
-            <ul class="list">
-              <li class="item item-checkbox" ng-repeat="item in itemList">
-                 {{item.itemName}} <span>({{item.itemAmount}})</span>
-                 <p class="time">{{item.itemCode}}</p>
-                 <label class="checkbox">
-                 <input type="checkbox" ng-model="item.insert">
-                 </label>
-              </li>
-            </ul>
+         <div  class="menge" ng-hide="arrayReady" ng-click="chooseItemsToInsertInProject()">
+            <i class="ion-checkmark-circled"></i>
+        </div>
+    </div>
 
-           
-        </div> 
+    <label class="item item-input item-select" >
+       <div class="input-label tagStyle" >
+        Move to Project :
+       </div>
+        <select ng-model="projectObj" ng-options="p.projectName for p in activos ">                              
+        </select>
+   </label>
+<div ng-show="projectObj" class="col text-center" ng-click ="itemsToProject(projectObj._id)">
+  <i class="ion-checkmark-circled"></i>
+</div>
+</div>
+
+
+
+
+<ul class="list">
+    <li class="item item-checkbox" ng-repeat="item in itemList">
+       {{item.itemName}} <span>({{item.itemAmount}})</span>
+       <p class="time">{{item.itemCode}}</p>
+       <label class="checkbox">
+         <input type="checkbox" ng-model="item.insert">
+     </label>
+ </li>
+</ul>
+
+
+</div> 
     </ion-content>  
 </ion-view>
 
