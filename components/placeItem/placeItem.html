@@ -15,8 +15,7 @@
             <div class="col text-center">
                <span class="tagStyle">Location</span>
                <p> {{readObj.itemLocation}}</p>
-            </div>
-            
+            </div>            
        </div>
 
        <div class="row">
@@ -72,7 +71,7 @@
 
     </div>
 
-    <button ng-hide="transfer" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="takeItem()">
+    <button ng-hide="transfer" id="fab" class="button button-positive button-fab button-fab-bottom-right" on-touch="takeItem()">
             <i class="icon ion-arrow-swap"></i>
          </button>
 </div>

@@ -5,7 +5,7 @@ angular.module('eStock.readItem',[])
 	// document.addEventListener("deviceready", function(){
 	// 	alert('todo fino');
 	// }, false);
-
+	$scope.show = true;
 	$scope.actualUser = $localstorage.getObject('currentUser');
 	console.log($scope.actualUser);
 

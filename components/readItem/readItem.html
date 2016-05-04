@@ -1,69 +1,71 @@
 <ion-view view-title="Read Item" cache-view="false">
-<div class="bar bar-subheader bar-stable">
-  <h2 class="tagStyle text-center padding">Scan with " <i class="icon ion-android-search"></i> " to Search for Information</h2>
-</div>
-
-<ion-content>    
-<div><br><br>
-<p style="padding-left:10px;"><i class="icon ion-person"></i> -{{actualUser.realName}}</p>
-
-    <div class="card padding" ng-show = "show">
-        <div class="row">
-            <div class="col text-center">
-                <span class="tagStyle">Item Code</span>
-                <p>{{readObj.itemCode}}</p>
-            </div>
-            <div class="col text-center"> 
-             <span class="tagStyle">Location</span>
-             <p>{{readObj.itemLocation}}</p>
-            </div>
-           
-       </div>
-       <div class="row">
-          <div class="col text-center">
-                <span class="tagStyle">Last Time</span>
-                <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
-          </div>
-
-         <div class="col text-center">
-               <span class="tagStyle">Name</span>
-               <p class="itemName"> {{readObj.itemName}}</p>
-         </div>      
-       </div>
-
-   <div class="row">
-    <div class="col text-center">
-        <span class="tagStyle ">Amount</span>
-        <p ng-hide="edit" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
-
-        <form class="row" ng-show ="edit" name="juan">                          
-
-            <div class="col"><i class="icon ion-arrow-return-left" ng-click="back()"></i></div>
-            <div class="col">
-                <input  name="vea"required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
-            </div>
-            <div class="col text-right" ng-show="juan.vea.$error.required"></div>
-
-            <div class="col text-right" ng-hide="juan.vea.$error.required"><i ng-click="updateAmount(readObj)" class="icon ion-android-upload"></i></div>        
-
-
-        </form>
-    </div>   
-</div>
-
-<div class="row">
-    <div class="col">
-            <div class="col text-center"><i ng-hide="edit" class="icon ion-android-create" ng-click="editAmount()"></i>
-            </div>
-        </div>
+     <!-- subheader from this view -->
+    <div class="bar bar-subheader bar-stable">
+      <h2 class="tagStyle text-center padding">Scan with " <i class="icon ion-android-search"></i> " to Search for Information</h2>
     </div>
 
-</div>   
+    <ion-content>    
+        <div><br><br>
+            <p style="padding-left:10px;"><i class="icon ion-person"></i> -{{actualUser.realName}}</p>
+            <div class="card padding" ng-show = "show">
+                <!-- row item Code and Location -->
+                <div class="row">
+                    <div class="col text-center">
+                        <span class="tagStyle">Item Code</span>
+                        <p>{{readObj.itemCode}}</p>
+                    </div>
+                    <div class="col text-center"> 
+                        <span class="tagStyle">Location</span>
+                        <p>{{readObj.itemLocation}}</p>
+                   </div>                   
+               </div>
+               <!-- row item Name and last Date -->
+               <div class="row">
+                    <div class="col text-center">
+                        <span class="tagStyle">Last Time</span>
+                        <p>{{readObj.itemLastDate | date:'dd-MM-yyyy  h:mma'}}</p>
+                    </div>
+                    <div class="col text-center">
+                        <span class="tagStyle">Name</span>
+                        <p class="itemName"> {{readObj.itemName}}</p>
+                    </div>      
+               </div>
+
+               <div class="row">
+                    <div class="col text-center">
+                        <span class="tagStyle ">Amount</span>
+                        <p ng-hide="edit" class="padding"style="font-size:350%;">{{readObj.itemAmount}}
+                        </p>
+                        <form class="row" ng-show ="edit" name="juan">                    
+
+                            <div class="col col-33">
+                                <i class="icon ion-arrow-return-left" ng-click="back()"></i>
+                            </div>
+                            <div class="col col-33">
+                                <input  name="vea" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
+                            </div>
+                            <div class="col col-33 text-right" ng-show="juan.vea.$error.required"></div>
+
+                            <div class="col col-33" ng-hide="juan.vea.$error.required">
+                                <i ng-click="updateAmount(readObj)" class="icon ion-android-upload"></i>
+                            </div>
+                        </form>
+                    </div>   
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="col text-center"><i ng-hide="edit" class="icon ion-android-create" ng-click="editAmount()"></i>
+                        </div>
+                    </div>
+                </div>
+
+        </div>   
 
 
-</div>
+        </div>
 
-<button ng-hide="edit" id="fab" class="button button-positive button-fab button-fab-bottom-right" ng-click="searchCode()">
+<button ng-hide="edit" id="fab" class="button button-positive button-fab button-fab-bottom-right" on-touch ="searchCode()">
     <span>
         <i class="icon ion-ios-search-strong"></i>
     </span>
