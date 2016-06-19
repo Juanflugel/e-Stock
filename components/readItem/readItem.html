@@ -15,8 +15,8 @@
                         <p>{{readObj.itemCode}}</p>
                     </div>
                     <div class="col text-center"> 
-                        <span class="tagStyle">Location</span>
-                        <p>{{readObj.itemLocation}}</p>
+                        <span class="tagStyle">Assembly</span>
+                        <p>{{readObj.itemAssemblyName}}</p>
                    </div>                   
                </div>
                <!-- row item Name and last Date -->
@@ -31,26 +31,36 @@
                     </div>      
                </div>
 
+               <!-- <div class ="row">
+                    <div class ="col text-center">
+                        <span class="tagStyle">Location</span>
+                        <p> {{readObj.itemLocation}}</p>
+                    </div>                   
+               </div> -->
+
                <div class="row">
                     <div class="col text-center">
                         <span class="tagStyle ">Amount</span>
-                        <p ng-hide="edit" class="padding"style="font-size:350%;">{{readObj.itemAmount}}
-                        </p>
-                        <form class="row" ng-show ="edit" name="juan">                    
+                        <p class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
+                    </div>   
+                </div>
+                <div class="row">
+                    <div class="col" ng-show="edit"> <!-- ng-show="edit" -->
+                        <form class="row" name="formAmount">                    
 
                             <div class="col col-33">
                                 <i class="icon ion-arrow-return-left" ng-click="back()"></i>
                             </div>
-                            <div class="col col-33">
-                                <input  name="vea" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
+                            <div class="col col-33" focus-me >
+                                <input name="vea" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.plusAmount" placeholder="Here">
                             </div>
-                            <div class="col col-33 text-right" ng-show="juan.vea.$error.required"></div>
+                            <div class="col col-33 text-right" ng-show="formAmount.vea.$error.required"></div>
 
-                            <div class="col col-33" ng-hide="juan.vea.$error.required">
+                            <div class="col col-33 text-right" ng-hide ="formAmount.vea.$error.required">
                                 <i ng-click="updateAmount(readObj)" class="icon ion-android-upload"></i>
                             </div>
                         </form>
-                    </div>   
+                    </div>
                 </div>
 
                 <div class="row">

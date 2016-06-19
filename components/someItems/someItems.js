@@ -4,7 +4,8 @@ angular.module('eStock.someItems',[])
 
 	var query ={};
 
-	shop.project.query(query,function (data){
+	shop.assembly.query(query,function (data){
+		console.log(data);
 		$scope.assemblyList = data;
 	},function (error){});
 
@@ -18,7 +19,7 @@ angular.module('eStock.someItems',[])
 	
 	var firmaId = "RMB01";
 	// query from DB all the projects that belong to the company
-shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},function (data){
+shop.project.query({companyId:firmaId,projectState:'open'},function (data){
 		$scope.activos = data; // referente solo a los projecto que estan en ejecucion
 });
 
@@ -30,7 +31,7 @@ shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},funct
 
 	$scope.currentAssembly = handleProjects.getCurrentAssembly();
 
-	$scope.itemList = $scope.currentAssembly.projectItems;
+	$scope.itemList = $scope.currentAssembly.assemblyItems;
 
 	$scope.itemsToInsert = []; // objects with allthe information
 	
@@ -48,7 +49,7 @@ shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},funct
 		}
 		// resume in a multyple array from code and amount
 		itemsToTakeFromStock = shop.resumeCodeAndAmount($scope.itemsToInsert);
-		query.array = shop.justItemCode(itemsToTakeFromStock); // prepare query
+		query.array = shop.justItemCode(itemsToTakeFromStock); // prepare query array
 		console.log(itemsToTakeFromStock,query);
 		shop.itemId.query(query,function (data){
 			//console.log(data);

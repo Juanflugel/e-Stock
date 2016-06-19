@@ -4,7 +4,7 @@ angular.module('eStock.services',['ngResource'])
 .factory('Config', function () {
   return {
       version : '0.0.1',
-      ip: 'www.estock.website',
+      ip: 'www.estock.website',//www.estock.website
       port: 5006,
       protocol: 'http'
   };
@@ -16,6 +16,7 @@ angular.module('eStock.services',['ngResource'])
     itemUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/items',{},{ update: {method: 'PUT'}}),
     itemUpdateMulti:$resource('http://' + Config.ip + ':' + Config.port + '/itemsMultipleAmount',{},{ update: {method: 'PUT'}}),
     company: $resource('http://' + Config.ip + ':' + Config.port + '/company',{}),
+    assembly:$resource('http://' + Config.ip + ':' + Config.port + '/assemblies',{}),
     project:$resource('http://' + Config.ip + ':' + Config.port + '/projects',{}),
     projectUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/itemToProject',{},{ update: {method: 'PUT'}}),
     resumeCodeAndAmount:function  (collection) {

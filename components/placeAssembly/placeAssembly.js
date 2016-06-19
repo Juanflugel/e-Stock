@@ -15,7 +15,7 @@ $scope.itemsToSubtract =[]; //[['itemCode',Amount]]
 $scope.itemsInStock = []; // collection with just the items that will be taken from the Stock to inert the assemlby in the project
 
 // query from DB all the projects that belong to the company
-shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},function (data){
+shop.project.query({companyId:firmaId,projectState:'open'},function (data){
 		$scope.activos = data; // referente solo a los projecto que estan en ejecucion
 });
 
@@ -39,17 +39,18 @@ $scope.takeAssembly = function(){
 			 const code = String(barcodeData.text).toUpperCase();;
 			 const type = String(barcodeData.format);
 			 var query = {};
-			 query.projectNumber = code;
+			 query.assemblyNumber = code;
 			 query.companyId = firmaId;
 
-			 shop.project.query(query,function (data) {
+			 shop.assembly.query(query,function (data) {
 							
 					if (data.length == 0){
 						alert('The Scaned Assembly is not registered yet');
 					}
 					else{
+						
 						 $scope.currentObj = data[0];
-						 $scope.itemsToMove = $scope.currentObj.projectItems;
+						 $scope.itemsToMove = $scope.currentObj.assemblyItems;
 						 $scope.itemsToSubtract = shop.resumeCodeAndAmount($scope.itemsToMove);
 						 multyQuery = shop.justItemCode($scope.itemsToSubtract);
 						 $scope.assembly = true;

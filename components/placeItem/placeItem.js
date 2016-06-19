@@ -25,7 +25,7 @@ angular.module('eStock.placeItem', ['eStock.services'])
 	var firmaId = 'RMB01';
 
 	// query from DB all the projects that belong to the company
-	shop.project.query({companyId:firmaId,isSubAssembly:0,projectState:'open'},function (data){
+	shop.project.query({companyId:firmaId,projectState:'open'},function (data){
 		$scope.projects = data;
 	});
 	// scan an Item and bring all the information from DB

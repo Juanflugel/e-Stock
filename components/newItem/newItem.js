@@ -28,6 +28,7 @@ angular.module('eStock.newItem',[])
 
     $scope.newItem = function(obj){
         // console.log(obj);
+        obj.itemCompany = 'RMB01';
         shop.itemId.save(obj,function (data){
             console.log(data);
             $scope.obj = {};

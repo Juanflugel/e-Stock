@@ -8,9 +8,9 @@
 <ion-content>
 <br> <br>
     <ion-item class="item-icon-right card bills" ng-repeat="assembly in assemblyList" type="item-text-wrap" href="#/app/someItems/{{assembly._id}}" ng-click="passAssembly(assembly)">
-        <h2 class="first">{{assembly.projectName}}</h2>
-        <p class="second">{{assembly.projectNumber}}</p>
-        <p class="second">{{assembly.projectItems.length}} BAUTEILE</p>
+        <h2 class="first">{{assembly.assemblyName}}</h2>
+        <p class="second">{{assembly.assemblyNumber}}</p>
+        <p class="second">{{assembly.assemblyItems.length}} BAUTEILE</p>
         <!-- <p class="second time">{{bill.buyDate | date:"MM/dd/yyyy 'at' h:mma"}}</p> -->
         <i class="icon ion-chevron-right icon-accessory"></i>
     </ion-item>
