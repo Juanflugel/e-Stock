@@ -1,6 +1,12 @@
 angular.module('eStock.placeAssembly',['eStock.services'])
 
-.controller('placeAssemblyCtrl',['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
+.controller('placeAssemblyCtrl',['$scope','shop','$cordovaBarcodeScanner','handleProjects',function ($scope,shop,$cordovaBarcodeScanner,handleProjects){
+
+ // shop.assembly.query({},function (data) {
+ // 	$scope.currentObj = data[6];
+ // 	$scope.itemsToMove = $scope.currentObj.assemblyItems;
+ // 	$scope.itemsToSubtract = shop.resumeCodeAndAmount($scope.itemsToMove);
+ // });
 // confi inicial de la vista
 var firmaId = 'RMB01';
 $scope.currentObj = {}; // current assembly
@@ -58,7 +64,7 @@ $scope.takeAssembly = function(){
 					}
 					 
 				 },function(queryerr){
-					alert(queryerror);
+					alert(queryerr);
 				 });
 
 		  },function(scanerror) {
@@ -69,18 +75,25 @@ $scope.takeAssembly = function(){
 
 $scope.restarArrays = function () {
 	currentAmounts = shop.subtract2arrays($scope.itemsInStock,$scope.itemsToSubtract);
+	alert(currentAmounts);
 }
 	
 $scope.assemblyToProject = function(idProject){
 	var start = new Date();
+	$scope.itemsToMove = handleProjects.addItemAssembledProperty($scope.itemsToMove);
 	var query = {};
 	query._id = idProject;
-	// query for insert intem in project
-	shop.projectUpdate.update(query,$scope.itemsToMove,function (data){
+	query.companyId = firmaId;
+	query['projectAssemblies.assemblyNumber'] = $scope.currentObj.assemblyNumber;
+		
 
+	// query for insert intem in project
+	shop.handleItems.update(query,$scope.itemsToMove,function (data){
+			//console.log(data);
 				shop.itemUpdateMulti.update({},currentAmounts,function (data) {	
 					 var t = new Date() - start;
-					alert('Update in Stock successful : '+ t);				
+					alert('Update in Stock successful : '+ t);
+					$scope.assembly = false;			
 					},function (error) {
 						alert('fail update in Stock');
 					}

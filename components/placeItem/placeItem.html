@@ -51,7 +51,19 @@
                 <div class="input-label tagStyle" >
                   Move to Project :
                 </div>
-                    <select ng-model="project" ng-options="number.projectNumber for number in projects ">
+                    <select ng-model="projectObj" ng-options="number.projectNumber for number in projects ">
+                      
+                    </select>
+              </label>
+            </div>          
+      </div>
+      <div class="col  center">
+            <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label tagStyle" >
+                  Baugruppe :
+                </div>
+                    <select ng-model="assemblyObj" ng-options="assembly.assemblyName for assembly in projectObj.projectAssemblies ">
                       
                     </select>
               </label>
@@ -61,11 +73,9 @@
         <h3>{{project.projectName}}</h3>
       </div>
 
-
-
            <br>
 
-       <div ng-show="project" class="col text-center" ng-click ="itemToProject(project.projectNumber)">
+       <div ng-show="projectObj && assemblyObj" class="col text-center" ng-click ="itemToProject(projectObj.projectNumber,assemblyObj.assemblyNumber)">
         <i class="ion-checkmark-circled"></i>
        </div>
 

@@ -93,12 +93,21 @@ angular.module('eStock',
       views: {
         'menuContent': {
           templateUrl: 'components/someItems/someItems.html',
-          controller: 'allAssembliesCtrl'
+          controller: 'allProjectsCtrl'
+        }
+      }
+  })
+  .state('app.assembliesInProject', {
+      url: '/someItems/:assembliesInProject',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/someItems/assembliesInProject.html',
+          controller: 'assembliesInProjectCtrl'
         }
       }
   })
   .state('app.itemsInAssembly', {
-      url: '/someItems/:itemsInAssembly',
+      url: '/someItems/:assembliesInProject/:itemsInAssembly',
       views: {
         'menuContent': {
           templateUrl: 'components/someItems/assemblyItems.html',

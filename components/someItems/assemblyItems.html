@@ -6,19 +6,18 @@
       <div class="row">
          <h2>{{currentAssembly.assemblyName}}</h2>
 
-         <div  class="menge" ng-hide="arrayReady" ng-click="chooseItemsToInsertInProject()">
+         <div  class="menge" ng-hide="arrayReady" ng-click="chooseItemsToInsertInProject()"> 
             <i class="ion-checkmark-circled"></i>
         </div>
     </div>
 
-    <label class="item item-input item-select" ng-show="arrayReady">
-       <div class="input-label tagStyle" >
-        Move to Project :
+
+       <div class="input-label tagStyle" ng-show="arrayReady"  >
+        &nbsp; Move to Project :{{currentProject.projectNumber}}
        </div>
-        <select ng-model="projectObj" ng-options="p.projectName for p in activos ">                              
-        </select>
-   </label>
-<div ng-show="projectObj" class="col text-center" ng-click ="itemsToProject(projectObj._id)">
+        
+
+<div ng-show="arrayReady" class="col text-center" ng-click ="itemsToProject()"> <!-- itemsToProject(projectObj._id) -->
   <i class="ion-checkmark-circled"></i>
 </div>
 </div>
@@ -28,10 +27,10 @@
 
 <ul class="list">
     <li class="item item-checkbox" ng-repeat="item in itemList">
-       {{item.itemName}} <span>({{item.itemAmount}})</span>
+       {{$index}}-{{item.itemName}} <span>({{item.itemAmount}})</span>
        <p class="time">{{item.itemCode}}</p>
        <label class="checkbox">
-         <input type="checkbox" ng-model="item.insert">
+         <input type="checkbox" ng-model="item.itemAssembled"> <!-- item.insert -->
      </label>
  </li>
 </ul>

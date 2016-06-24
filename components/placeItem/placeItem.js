@@ -2,7 +2,7 @@
 angular.module('eStock.placeItem', ['eStock.services'])
 
 .controller('placeItemCrtl', ['$scope','shop','$cordovaBarcodeScanner',function ($scope,shop,$cordovaBarcodeScanner){
-
+	// $scope.transfer = true;
 	$scope.whileObj = {};
 
 	$scope.forgetToPlace = function(){
@@ -11,22 +11,17 @@ angular.module('eStock.placeItem', ['eStock.services'])
 	}
 
 	$scope.defineAmount = function(){
-		console.log('tu perra madre');
+		
 		$scope.editAmount = true;
 	}
-	// query db the company Objetc
-	shop.company.query(function (data){
-		console.log('bien');
-		$scope.firma = data[0];
-	},function (err){
-
-	});
 
 	var firmaId = 'RMB01';
 
 	// query from DB all the projects that belong to the company
 	shop.project.query({companyId:firmaId,projectState:'open'},function (data){
 		$scope.projects = data;
+		$scope.assemblies = $scope.projects.projectAssemblies;
+
 	});
 	// scan an Item and bring all the information from DB
 	$scope.takeItem = function(){
@@ -48,22 +43,29 @@ angular.module('eStock.placeItem', ['eStock.services'])
 						 $scope.transfer = true;
 					}
 					 
-				 },function(queryerr){
-					alert(queryerror);
+				 },function(err){
+					alert('query error');
 				 });
 
 		  },function(scanerror) {
-		  // An error occurred
+		  alert(' scaner error');
 	   });
 		
 	}
 	// set the item and amount to the item array inisde a project
-	$scope.itemToProject = function (proNumber){
+	$scope.itemToProject = function (proNumber,assemblyNumber){
+		var obj = $scope.readObj;
 		var query = {};
 		query.projectNumber = proNumber;
-		var obj = $scope.readObj;
+		query['projectAssemblies.assemblyNumber'] = assemblyNumber;
+		query['projectAssemblies.assemblyItems.itemCode'] = obj.itemCode;
+		query.companyId = firmaId;
+		console.log(query);
+
+		
+
 		// query for insert intem in project
-		shop.projectUpdate.update(query,$scope.readObj,function (data){			
+		shop.projectUpdate.update(query,function (data){			
 			$scope.transfer = false;
 			const takenAmount = obj.itemAmount;
 			const newAmount = $scope.whileObj.itemAmount-takenAmount;
@@ -71,7 +73,7 @@ angular.module('eStock.placeItem', ['eStock.services'])
 			obj.itemAmount = newAmount;
 
 			shop.itemUpdate.update({itemCode:obj.itemCode},obj,function (data){
-			 	alert('item insert in porject: '+ projectId);
+			 	alert('item insert in porject: '+ proNumber);
 			
 			}, function(error){
 				alert('The item amount was not updated');

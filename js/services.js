@@ -4,7 +4,7 @@ angular.module('eStock.services',['ngResource'])
 .factory('Config', function () {
   return {
       version : '0.0.1',
-      ip: 'www.estock.website',//www.estock.website
+      ip: '77.186.58.57',//www.estock.website
       port: 5006,
       protocol: 'http'
   };
@@ -19,6 +19,7 @@ angular.module('eStock.services',['ngResource'])
     assembly:$resource('http://' + Config.ip + ':' + Config.port + '/assemblies',{}),
     project:$resource('http://' + Config.ip + ':' + Config.port + '/projects',{}),
     projectUpdate:$resource('http://' + Config.ip + ':' + Config.port + '/itemToProject',{},{ update: {method: 'PUT'}}),
+    handleItems:$resource('http://' + Config.ip + ':' + Config.port + '/handleProjects',{},{ update: {method: 'PUT'}}),
     resumeCodeAndAmount:function  (collection) {
         const sample = [];
         _.each(collection,function (obj) {
@@ -53,8 +54,9 @@ angular.module('eStock.services',['ngResource'])
 
 .factory('handleProjects', function ($rootScope) {
 
-  var currentAssembly={};
-  var detalle ={};
+  var currentProject = {};
+  var currentAssembly = {};
+  var detalle = {};
   var toBuy = {};
 
   return {
@@ -64,12 +66,21 @@ angular.module('eStock.services',['ngResource'])
     updateBuyList:function(){
       $rootScope.$broadcast('newProductToBuy');
     },
+    passProject: function(obj){
+      currentProject = obj;
+      console.log(currentProject);
+    },
     passAssembly: function(obj){
       currentAssembly = obj;
       console.log(currentAssembly);
     },
     remove: function(bill) {
       bills.splice(bills.indexOf(bill), 1);
+    },
+    getCurrentProject: function() {
+      console.log('currentProject',currentProject);
+      return currentProject;
+
     },
     getCurrentAssembly: function() {
       console.log('me llamaron');
@@ -81,6 +92,12 @@ angular.module('eStock.services',['ngResource'])
     },
     getCurrentProduct: function(){
       return detalle;
+    },
+    addItemAssembledProperty :function(collection){
+      _.each(collection,function (item){
+        item.itemAssembled = true;
+      })
+      return collection;
     }
   }
 })
