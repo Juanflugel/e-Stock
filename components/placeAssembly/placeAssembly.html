@@ -21,7 +21,7 @@
 
        <div class="row">
             <div class="col text-center">
-                <span class="tagStyle">Amount of Parts</span>
+                <span class="tagStyle">Number of Parts</span>
                 <p>{{currentObj.assemblyItems.length}}</p>
             </div>
 
@@ -30,21 +30,6 @@
                <p class="itemName"> {{readObj.itemName}}</p>
            </div>
        </div>
-
-      <!-- <div class="row">
-        <div class="col text-center">
-            <span class="tagStyle ">Amount To Use</span>
-            <p ng-click="defineAmount()" ng-hide="editAmount" class="padding"style="font-size:350%;">{{readObj.itemAmount}}</p>
-                          
-            <div class="row" ng-show ="editAmount">
-                <div class="col"><i class="icon ion-arrow-return-left" ng-click="forgetToPlace()"></i></div>
-                <div class="col">
-                    <input  name="move" required class="amount" style="font-size:150%;" type="number" ng-model="readObj.itemAmount" placeholder="Here">
-                </div>
-                <div class="col"></div>
-            </div>
-        </div>   
-      </div> -->
 
        <div class="col  center">
             <div class="list">
@@ -58,14 +43,13 @@
               </label>
             </div>          
       </div>
+
       <div class="col text-center" ng-show="projectObj">
         <h3>{{projectObj.projectName}}</h3>
          <h3>{{projectObj.projectNumber}}</h3>
       </div>
-
-
-
-           <br>
+           
+      <br>
 
        <div ng-show="projectObj" class="col text-center" ng-click ="assemblyToProject(projectObj._id)">
         <i class="ion-checkmark-circled"></i>

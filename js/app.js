@@ -10,7 +10,6 @@ angular.module('eStock',
   'eStock.menu',
   'eStock.newItem',
   'eStock.readItem',
-  'eStock.placeItem',
   'eStock.placeAssembly',
   'eStock.someItems',
   'eStock.settings',
@@ -43,15 +42,15 @@ angular.module('eStock',
     templateUrl: 'components/menu/menu.html',
     controller: 'AppCtrl'
   })
-  .state('app.placeItem', {
-      url: '/placeItem',
-      views: {
-        'menuContent': {
-          templateUrl: 'components/placeItem/placeItem.html',
-          controller: 'placeItemCrtl'
-        }
-      }
-  })
+  // .state('app.placeItem', {
+  //     url: '/placeItem',
+  //     views: {
+  //       'menuContent': {
+  //         templateUrl: 'components/placeItem/placeItem.html',
+  //         controller: 'placeItemCrtl'
+  //       }
+  //     }
+  // })
   .state('app.placeAssembly', {
       url: '/placeAssembly',
       views: {

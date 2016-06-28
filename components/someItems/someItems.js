@@ -83,7 +83,7 @@ angular.module('eStock.someItems',[])
 				$scope.itemsToInsert.push(stuck[i]);
 			}
 		}
-		alert($scope.itemsToInsert.length);
+		// alert($scope.itemsToInsert.length);
 		// resume in a multyple array from code and amount
 		itemsToTakeFromStock = shop.resumeCodeAndAmount($scope.itemsToInsert);
 		query.array = shop.justItemCode(itemsToTakeFromStock); // prepare query array
@@ -112,7 +112,8 @@ angular.module('eStock.someItems',[])
 	// query for insert intem in project
 	shop.handleItems.update(query,$scope.allItems,function (data){
 
-				shop.itemUpdateMulti.update({},itemsNewAmounts,function (data) {	
+				shop.itemUpdateMulti.update({companyId:firmaId},itemsNewAmounts,function (data) {
+					console.log(data);	
 					 var t = new Date() - start;
 					alert('Update in Stock successful : '+ t);
 					$state.go('app.someItems');			

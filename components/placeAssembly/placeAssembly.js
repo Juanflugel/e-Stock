@@ -3,9 +3,9 @@ angular.module('eStock.placeAssembly',['eStock.services'])
 .controller('placeAssemblyCtrl',['$scope','shop','$cordovaBarcodeScanner','handleProjects',function ($scope,shop,$cordovaBarcodeScanner,handleProjects){
 
  // shop.assembly.query({},function (data) {
- // 	$scope.currentObj = data[6];
- // 	$scope.itemsToMove = $scope.currentObj.assemblyItems;
- // 	$scope.itemsToSubtract = shop.resumeCodeAndAmount($scope.itemsToMove);
+ //     $scope.currentObj = data[6];
+ //     $scope.itemsToMove = $scope.currentObj.assemblyItems;
+ //     $scope.itemsToSubtract = shop.resumeCodeAndAmount($scope.itemsToMove);
  // });
 // confi inicial de la vista
 var firmaId = 'RMB01';
@@ -75,10 +75,11 @@ $scope.takeAssembly = function(){
 
 $scope.restarArrays = function () {
 	currentAmounts = shop.subtract2arrays($scope.itemsInStock,$scope.itemsToSubtract);
-	alert(currentAmounts);
+	// alert(currentAmounts);
 }
 	
 $scope.assemblyToProject = function(idProject){
+
 	var start = new Date();
 	$scope.itemsToMove = handleProjects.addItemAssembledProperty($scope.itemsToMove);
 	var query = {};
@@ -88,18 +89,22 @@ $scope.assemblyToProject = function(idProject){
 		
 
 	// query for insert intem in project
-	shop.handleItems.update(query,$scope.itemsToMove,function (data){
-			//console.log(data);
-				shop.itemUpdateMulti.update({},currentAmounts,function (data) {	
-					 var t = new Date() - start;
-					alert('Update in Stock successful : '+ t);
-					$scope.assembly = false;			
-					},function (error) {
-						alert('fail update in Stock');
-					}
-				);
+		shop.handleItems.update(query,$scope.itemsToMove,function (data){
 
-			},function (error){});
+				shop.itemUpdateMulti.update({companyId:firmaId},currentAmounts,function (data) {
+					 
+						var t = new Date() - start;
+						alert('Update in Stock successful : '+ t);
+						$scope.assembly = false;            
+						},function (error) {
+							alert('fail update in Stock');
+						}
+					);					
+
+			},function (error){
+				console.log(error);
+				// alert('fail items insertion in project');
+		});
 
 
 
