@@ -4,7 +4,7 @@ angular.module('eStock.services',['ngResource'])
 .factory('Config', function () {
   return {
       version : '0.0.1',
-      ip: 'www.estock.website',//www.estock.website
+      ip: 'mirusapp.ddns.net',//www.estock.website
       port: 5006,
       protocol: 'http'
   };
