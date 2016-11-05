@@ -1,0 +1,17 @@
+<ion-view view-title="Orders" cache-view="false">
+<div class="bar bar-subheader bar-stable">
+  <h2 class="tagStyle text-center padding">
+    Choose the roder you want to recieve
+  </h2>
+</div>
+
+<ion-content>
+<br> <br>
+    <ion-item class="item-icon-right card bills" ng-repeat="order in orderList" type="item-text-wrap" href="#/app/orders/{{order.orderNumber}}" ng-click="passOrder(order)">
+        <h2 class="first"> {{order.orderProvider}} - {{order.orderNumber | uppercase}} </h2>
+        <p class="second">{{order.orderDeliveringDate| date: " MM.dd.yyyy"}}</p>
+        <p class="second time">{{order.orderStatus}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+  </ion-content>
+</ion-view>

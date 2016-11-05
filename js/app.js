@@ -13,6 +13,7 @@ angular.module('eStock',
   'eStock.placeAssembly',
   'eStock.someItems',
   'eStock.settings',
+  'eStock.orders',
   'ionic-material',
   'ngCordova'])
 
@@ -84,6 +85,24 @@ angular.module('eStock',
         'menuContent': {
           templateUrl: 'components/settings/settings.html',
           controller: 'settingsCtrl'
+        }
+      }
+  })
+  .state('app.orders', {
+      url: '/orders',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/orders/orders.html',
+          controller: 'ordersCtrl'
+        }
+      }
+  })
+  .state('app.itemsInOrder', {
+      url: '/orders/:orderId',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/orders/orderItems.html',
+          controller: 'itemsOrderCtrl'
         }
       }
   })

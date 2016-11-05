@@ -3,23 +3,21 @@
    <div class="card">
     <!-- header with the mall -->
     <div class="item">
-      <div class="row">
-         <h2>{{currentAssembly.assemblyName}}</h2>
 
-         <div  class="menge" ng-hide="arrayReady" ng-click="chooseItemsToInsertInProject()"> 
-            <i class="ion-checkmark-circled"></i>
-        </div>
+      <div class="row text-center">
+        <div class="col"><h2>{{currentAssembly.assemblyName}}</div>
+        <div class="col"><h2></h2></div>
+        <div class="col"><h2 ng-hide="hideButton">Selected Items {{itemsForStock.length}}</div>
+      </div>  
+
+    <div class="padding" ng-show="hideButton">
+        <p class="text-center"><i  class="ion-checkmark-circled"></i></p>
+        <p class="text-center"> Assembly completed </p>
     </div>
-
-
-       <div class="input-label tagStyle" ng-show="arrayReady"  >
-        &nbsp; Move to Project :{{currentProject.projectNumber}}
-       </div>
-        
-
-<div ng-show="arrayReady" class="col text-center" ng-click ="itemsToProject()"> <!-- itemsToProject(projectObj._id) -->
-  <i class="ion-checkmark-circled"></i>
-</div>
+    <div class="padding" ng-hide="hideButton">
+        <button class="button button-balanced button-reised button-block" ng-click="itemsToProject()"> Insert Items
+        </button>
+    </div>
 </div>
 
 
@@ -30,7 +28,7 @@
        {{$index}}-{{item.itemName}} <span>({{item.itemAmount}})</span>
        <p class="time">{{item.itemCode}}</p>
        <label class="checkbox">
-         <input type="checkbox" ng-model="item.itemAssembled"> <!-- item.insert -->
+         <input type="checkbox" ng-model="item.itemAssembled" ng-change="filterItemsForStock()"> <!-- item.insert -->
      </label>
  </li>
 </ul>

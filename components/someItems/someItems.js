@@ -7,7 +7,7 @@ angular.module('eStock.someItems',[])
 	query.projectState = 'open';
 
 	shop.project.query(query,function (data){
-		console.log(data);
+		//console.log(data);
 		$scope.projectList = data;
 	},function (error){});
 
@@ -24,7 +24,7 @@ angular.module('eStock.someItems',[])
 
 	function doneOrNot (){ // funcion para mostrar el estado de un ensamble en un proyecto
 
-		for(i=0;i<$scope.assemblyList.length;i++){
+		for(var i=0; i < $scope.assemblyList.length; i++){
 
 			var a = $scope.assemblyList[i].assemblyItems;
 			var listo =_.reject(a,function (item){
@@ -59,49 +59,25 @@ angular.module('eStock.someItems',[])
 	$scope.currentAssembly = handleProjects.getCurrentAssembly();
 	$scope.allItems = $scope.currentAssembly.assemblyItems;
 
-
-	var itemsNewAmounts = []; // [itemCode,itemAmount]
-	var itemsAndAmountInStock = []; // [itemCode,itemAmount]
 	var itemsToTakeFromStock = []; // [itemCode,itemAmount]
-	
+	$scope.itemsForStock = []; // items that the user check to insert in a project and discount from stock
 
 	$scope.itemList = _.reject($scope.allItems,function (item){ // se descartan los items que ya estan insertados
 		return item.itemAssembled == true; // de alguna forma los escope sigen vinculados
-	});
+	});	
 
-	$scope.itemsToInsert = []; // objects with all the information
-	
+	if ($scope.itemList.length === 0){
+		$scope.hideButton = true;
+	}
 
-	$scope.chooseItemsToInsertInProject = function(){
-		var query = {};
-		query.companyId = "RMB01";
-		var al = $scope.itemList.length;
-		var stuck = $scope.itemList;
-
-		for (i=0;i<al;i++){
-			if (stuck[i].itemAssembled == true){
-				$scope.itemsToInsert.push(stuck[i]);
-			}
-		}
-		// alert($scope.itemsToInsert.length);
-		// resume in a multyple array from code and amount
-		itemsToTakeFromStock = shop.resumeCodeAndAmount($scope.itemsToInsert);
-		query.array = shop.justItemCode(itemsToTakeFromStock); // prepare query array
-
-		shop.itemId.query(query,function (data){
-
-			 itemsAndAmountInStock = shop.resumeCodeAndAmount(data); // resume in a multyple array from code and amount
-
-			 itemsNewAmounts = shop.subtract2arrays(itemsAndAmountInStock,itemsToTakeFromStock);
-			 alert(itemsNewAmounts.length + ' Items Selected');
-			 $scope.arrayReady = true;
-			},function (error){
-				alert('error con la respuesta del array de items que se escogieron');
-			})
+	$scope.filterItemsForStock = function(){
+		$scope.itemsForStock = _.filter($scope.itemList,function (item){
+			return item.itemAssembled === true;
+		});
+	 	itemsToTakeFromStock = shop.resumeCodeAndAmountToDescount($scope.itemsForStock);
 	};
 
 	$scope.itemsToProject = function(){
-
 	var start = new Date();
 	var query = {};
 		query.companyId = firmaId;
@@ -112,7 +88,7 @@ angular.module('eStock.someItems',[])
 	// query for insert intem in project
 	shop.handleItems.update(query,$scope.allItems,function (data){
 
-				shop.itemUpdateMulti.update({companyId:firmaId},itemsNewAmounts,function (data) {
+				shop.itemIncrement.update({companyId:firmaId},itemsToTakeFromStock,function (data) {
 					console.log(data);	
 					 var t = new Date() - start;
 					alert('Update in Stock successful : '+ t);
