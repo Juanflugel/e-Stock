@@ -1,6 +1,19 @@
-<ion-view view-title="Item List" cache-view="false">
+ <ion-view view-title="Item List" cache-view="false">
+
+    <div class=" bar bar-subheader search">
+    <label class="item item-input">
+     <i class="icon ion-search placeholder-icon" style="color:#0D47A1;"></i>&nbsp;&nbsp;&nbsp;
+    <input type="text" placeholder="Search" ng-model="search">
+    </label>              
+  </div>
+
+
    <ion-content>
+
+
+<br><br>
    <div class="card">
+
     <!-- header with the mall -->
     <div class="item">
       <div class="row text-center">
@@ -8,6 +21,8 @@
         <div class="col"><h2>{{currentOrder.orderNumber}}</h2></div>
         <div class="col"><h2>{{currentOrder.orderDeliveringDate | date:"dd.MM.yyyy"}}</div>
     </div>
+
+
     
     <div class="padding" ng-show="hideButton">
      <p class="text-center"><i  class="ion-checkmark-circled"></i></p>
@@ -17,9 +32,9 @@
 
 
     <ul class="list">
-        <li class="item item-checkbox" ng-repeat="item in itemsOrderList" >
-           {{$index +1 }}-{{item.itemName}} <span>({{item.amountOrdered}})</span>
-           <p class="time">{{item.itemCode}}</p>
+        <li class="item item-checkbox" ng-repeat="item in itemsOrderList | orderBy:'itemCode'|filter:search" >
+           {{$index +1 }} &nbsp;- {{ item.itemCode}} &nbsp; <span> [{{item.amountOrdered}}]</span>
+           <p class="time">{{item.itemName}}</p>
            <label class="checkbox">
              <input type="checkbox" ng-model="item.isDelivered" ng-change="updateFilter()">
          </label>

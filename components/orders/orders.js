@@ -40,20 +40,24 @@ angular.module('eStock.orders',[])
 
 	$scope.callDeliveredItems = function(){		
 		var itemsArray = shop.resumeCodeAndOrderedAmount($scope.delivereditems);
-		console.log(itemsArray);
+		// console.log(itemsArray);
 		var query = {};
 		query.companyId = $scope.companyId;
 		query.orderNumber = $scope.currentOrder.orderNumber;
 		shop.ordersUpdate.update(query,$scope.allItemsInOrder,function (data){
-			console.log('alles gut');
+			// console.log($scope.allItemsInOrder);
 			var query1 ={};
 			query1.companyId = $scope.companyId;
 			console.log(query1);
 			shop.itemIncrement.update(query1,itemsArray,function (data){
 					alert(data.answer);
 					$state.go('app.orders');
-			},function (error){});
+			},function (error){
+				alert('error from items root'+ error);
+			});
 			
-		},function (error){})
+		},function (error){
+			alert('error from orders root' + error);
+		})
 	}
 }]);

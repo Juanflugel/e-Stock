@@ -1,5 +1,13 @@
 <ion-view view-title="Assembly Items" cache-view="false">
-   <ion-content>
+
+<div class=" bar bar-subheader search">
+    <label class="item item-input">
+     <i class="icon ion-search placeholder-icon" style="color:#0D47A1;"></i>&nbsp;&nbsp;&nbsp;
+    <input type="text" placeholder="Search" ng-model="search">
+    </label>              
+  </div>
+
+   <ion-content> <br> <br>
    <div class="card">
     <!-- header with the mall -->
     <div class="item">
@@ -7,45 +15,39 @@
       <div class="row text-center">
         <div class="col"><h2>{{currentAssembly.assemblyName}}</div>
         <div class="col"><h2></h2></div>
-        <div class="col"><h2 ng-hide="hideButton">Selected Items {{itemsForStock.length}}</div>
+        <div class="col"><h2 ng-hide="hideButton">Selected {{itemsForStock.length}}</div>
       </div>  
 
     <div class="padding" ng-show="hideButton">
         <p class="text-center"><i  class="ion-checkmark-circled"></i></p>
         <p class="text-center"> Assembly completed </p>
     </div>
-    <div class="padding" ng-hide="hideButton">
-        <button class="button button-balanced button-reised button-block" ng-click="itemsToProject()"> Insert Items
-        </button>
-    </div>
+   
 </div>
 
 
 
 
 <ul class="list">
-    <li class="item item-checkbox" ng-repeat="item in itemList">
-       {{$index}}-{{item.itemName}} <span>({{item.itemAmount}})</span>
-       <p class="time">{{item.itemCode}}</p>
+    <li class="item item-checkbox" ng-repeat="item in itemList |filter:search">
+       {{$index +1}}&nbsp;- {{item.itemCode}} <span> &nbsp;[{{item.itemAmount}}]</span>
+       <p class="time">{{item.itemName}}</p>
        <label class="checkbox">
          <input type="checkbox" ng-model="item.itemAssembled" ng-change="filterItemsForStock()"> <!-- item.insert -->
      </label>
  </li>
 </ul>
 
+<div class="padding" ng-hide="hideButton">
+        <button class="button button-balanced button-reised button-block" ng-click="itemsToProject()"> Insert Items
+        </button>
+    </div>
 
 </div> 
+
+     
+
     </ion-content>  
 </ion-view>
 
 
- <!-- <ion-list class="item item-body">
-                <ion-item class="item-icon-right divider" ng-repeat="item in itemList" type="item-text-wrap"  ng-click="passitem(item)">
-                  image of the item 
-                  <img ng-src="{{item.imgUrl}}"> -->
-                  <!-- h2 class="capital"><ion-checkbox ng-model="isChecked"></ion-checkbox></h2>
-                  
-                  <i class="icon ion-chevron-right icon-accessory"></i>
-
-                </ion-item>
-             </ion-list> --> -->

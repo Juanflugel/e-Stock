@@ -4,7 +4,7 @@ angular.module('eStock.services',['ngResource'])
 .factory('Config', function () {
   return {
       version : '0.0.1',
-      ip: '78.51.121.251',//www.estock.website
+      ip: 'localhost',//www.estock.website localhost
       port: 5006,
       protocol: 'http'
   };
